@@ -1,11 +1,12 @@
-﻿using MinecraftEditor.Nbt;
+﻿using MinecraftEditor.Levels;
+using MinecraftEditor.Nbt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftEditor.Tests.Models.Level
+namespace MinecraftEditor.Tests.Levels
 {
     internal class LevelTests
     {
@@ -15,7 +16,7 @@ namespace MinecraftEditor.Tests.Models.Level
             using (var file = File.Open("./Data/flat level - uncompressed.dat", FileMode.Open))
             {
                 var root = NbtReader.ReadRoot(file);
-                var level = MinecraftEditor.Models.LevelModels.Level.Load(root.Values.First() as Dictionary<string, object>);
+                var level = Level.Load(root.Values.First() as Dictionary<string, object>);
 
                 Assert.That(level.Time, Is.EqualTo(417));
                 level.Time = 1;

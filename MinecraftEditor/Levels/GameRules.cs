@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor.Models.LevelModels
+namespace MinecraftEditor.Levels
 {
     public class GameRules
     {

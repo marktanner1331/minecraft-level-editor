@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace MinecraftEditor.Models
+namespace MinecraftEditor.Shared
 {
     public class Orientation
     {

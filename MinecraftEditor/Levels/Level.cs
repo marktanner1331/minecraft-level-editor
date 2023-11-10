@@ -1,8 +1,7 @@
-﻿using MinecraftEditor.Enums;
-using MinecraftEditor.Models.PlayerModels;
-using MinecraftEditor.Nbt;
+﻿using MinecraftEditor.Nbt;
+using MinecraftEditor.Players;
 
-namespace MinecraftEditor.Models.LevelModels
+namespace MinecraftEditor.Levels
 {
     public class Level
     {

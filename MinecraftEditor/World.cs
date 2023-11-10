@@ -1,6 +1,6 @@
-﻿using MinecraftEditor.Models.LevelModels;
-using MinecraftEditor.Models.PlayerModels;
+﻿using MinecraftEditor.Levels;
 using MinecraftEditor.Nbt;
+using MinecraftEditor.Players;
 using System;
 using System.Collections.Generic;
 using System.IO;

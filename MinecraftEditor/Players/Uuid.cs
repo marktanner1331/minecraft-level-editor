@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MinecraftEditor.Models.PlayerModels
+namespace MinecraftEditor.Players
 {
     public class Uuid
     {

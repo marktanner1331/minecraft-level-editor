@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor.Models.PlayerModels
+namespace MinecraftEditor.Players
 {
     public class Inventory
     {

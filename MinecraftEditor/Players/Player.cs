@@ -1,10 +1,11 @@
-﻿using MinecraftEditor.Enums;
+﻿using MinecraftEditor.Levels;
 using MinecraftEditor.Nbt;
+using MinecraftEditor.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor.Models.PlayerModels
+namespace MinecraftEditor.Players
 {
     public class Player : Mob
     {
