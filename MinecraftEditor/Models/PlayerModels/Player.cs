@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor.PlayerModels
+namespace MinecraftEditor.Models.PlayerModels
 {
     public class Player : Mob
     {
@@ -160,7 +160,7 @@ namespace MinecraftEditor.PlayerModels
         {
             get
             {
-                return _inventory ?? (_inventory = Inventory.Load(Tree.Get<NbtCompound>("Inventory")));
+                return _inventory ?? (_inventory = Inventory.Load(Tree.Get<NbtList>("Inventory")));
             }
             set
             {
@@ -208,7 +208,7 @@ namespace MinecraftEditor.PlayerModels
 
         private Player(NbtCompound tree) : base(tree)
         {
-            
+
         }
 
         public static Player Load(NbtCompound tree)

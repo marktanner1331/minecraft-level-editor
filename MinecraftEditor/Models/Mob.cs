@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor
+namespace MinecraftEditor.Models
 {
     public class Mob : Entity
     {

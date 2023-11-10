@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MinecraftEditor.PlayerModels
+namespace MinecraftEditor.Models.PlayerModels
 {
     public class Uuid
     {
@@ -21,16 +21,16 @@ namespace MinecraftEditor.PlayerModels
 
             int k = 0;
             byte[] temp = new byte[4];
-            
-            for(int i = 0;i < 4;i++)
+
+            for (int i = 0; i < 4; i++)
             {
-                for(int j = 0;j < 4;j++)
+                for (int j = 0; j < 4; j++)
                 {
                     temp[j] = Convert.ToByte(value.Substring(k, 2), 16);
                     k += 2;
                 }
 
-                if(BitConverter.IsLittleEndian)
+                if (BitConverter.IsLittleEndian)
                 {
                     Array.Reverse(temp);
                 }
@@ -54,9 +54,9 @@ namespace MinecraftEditor.PlayerModels
 
         public override bool Equals(object obj)
         {
-            if(obj is Uuid other)
+            if (obj is Uuid other)
             {
-                return Enumerable.SequenceEqual(data, other.data);
+                return data.SequenceEqual(other.data);
             }
             else
             {
@@ -66,7 +66,7 @@ namespace MinecraftEditor.PlayerModels
 
         public override string ToString()
         {
-            var bytes = data.SelectMany(x => 
+            var bytes = data.SelectMany(x =>
             {
                 var temp = BitConverter.GetBytes(x);
                 if (BitConverter.IsLittleEndian)
@@ -80,7 +80,7 @@ namespace MinecraftEditor.PlayerModels
             int i = 0;
             foreach (byte b in bytes)
             {
-                switch(i)
+                switch (i)
                 {
                     case 4:
                     case 6:

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor
+namespace MinecraftEditor.Models
 {
     public class Point3D
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor.PlayerModels
+namespace MinecraftEditor.Models.PlayerModels
 {
     public class PlayerAbilities
     {

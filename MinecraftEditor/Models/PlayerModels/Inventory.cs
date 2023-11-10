@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MinecraftEditor.PlayerModels
+namespace MinecraftEditor.Models.PlayerModels
 {
     public class Inventory
     {
-        public NbtCompound Tree;
+        public NbtList Tree;
 
-        private Inventory(NbtCompound tree)
+        private Inventory(NbtList tree)
         {
             Tree = tree;
         }
 
-        public static Inventory Load(NbtCompound tree)
+        public static Inventory Load(NbtList tree)
         {
             return new Inventory(tree);
         }

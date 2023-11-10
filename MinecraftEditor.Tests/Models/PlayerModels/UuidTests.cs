@@ -1,4 +1,4 @@
-﻿using MinecraftEditor.PlayerModels;
+﻿using MinecraftEditor.Models.PlayerModels;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftEditor.Tests
+namespace MinecraftEditor.Tests.Models.Player
 {
     public class UuidTests
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinecraftEditor.Tests
+namespace MinecraftEditor.Tests.Models.Player
 {
     public class PlayerTests
     {
@@ -16,7 +16,7 @@ namespace MinecraftEditor.Tests
             using (var file = File.Open("./Data/flat level - uncompressed.dat", FileMode.Open))
             {
                 var root = NbtReader.ReadRoot(file);
-                var level = Level.Load(root.Values.First() as Dictionary<string, object>);
+                var level = MinecraftEditor.Models.LevelModels.Level.Load(root.Values.First() as Dictionary<string, object>);
                 var player = level.Player;
 
                 Assert.That(player, Is.Not.Null);
