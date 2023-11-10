@@ -193,6 +193,19 @@ namespace MinecraftEditor.PlayerModels
             }
         }
 
+        public Uuid Uuid
+        {
+            get
+            {
+
+                return new Uuid(Tree.Get<int[]>("UUID"));
+            }
+            set
+            {
+                Tree["UUID"] = value;
+            }
+        }
+
         private Player(NbtCompound tree) : base(tree)
         {
             

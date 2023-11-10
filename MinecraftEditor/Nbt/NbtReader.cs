@@ -7,34 +7,36 @@ namespace MinecraftEditor.Nbt
 {
     public static class NbtReader
     {
-        public enum TagType
-        {
-            END = 0,
-            BYTE = 1,
-            SHORT = 2,
-            INT = 3,
-            LONG = 4,
-            FLOAT = 5,
-            DOUBLE = 6,
-            STRING = 8,
-            LIST = 9,
-            COMPOUND = 10,
-            INT_ARRAY = 11
-        }
-
         /// <summary>
         /// reads the contents of the NBT file
         /// </summary>
-        public static NbtCompound Read(Stream stream)
+        public static NbtCompound ReadRoot(Stream stream)
         {
-            return ReadRoot(stream);
+            //compounds are dictionaries made up of keys and values
+            NbtCompound values = new NbtCompound();
+
+            //first we have the id of the value
+            int id = stream.ReadByte();
+
+            if (id == (int)TagType.END)
+            {
+                return values;
+            }
+
+            //then the root name
+            string name = ReadString(stream);
+
+            //then the value
+            values[name] = ReadValue(id, stream);
+
+            return values;
         }
 
         /// <summary>
         /// reads an nbt object from the stream
         /// the stream position should be straight after the id byte
         /// </summary>
-        public static object ReadValue(int id, Stream stream)
+        private static object ReadValue(int id, Stream stream)
         {
             switch((TagType)id)
             {
@@ -63,7 +65,7 @@ namespace MinecraftEditor.Nbt
             throw new Exception("Unknown nbt tag id: " + id);
         }
 
-        public static int[] ReadIntArray(Stream stream)
+        private static int[] ReadIntArray(Stream stream)
         {
             //and then we get the length of the list
             int length = ReadInt(stream);
@@ -77,7 +79,7 @@ namespace MinecraftEditor.Nbt
             return array;
         }
 
-        public static List<object> ReadList(Stream stream)
+        private static NbtList ReadList(Stream stream)
         {
             //all list elements are the same type
             int subId = stream.ReadByte();
@@ -85,7 +87,7 @@ namespace MinecraftEditor.Nbt
             //and then we get the length of the list
             int length = ReadInt(stream);
 
-            List<object> list = new List<object>();
+            NbtList list = new NbtList();
 
             if(subId == (int)TagType.END)
             {
@@ -103,7 +105,7 @@ namespace MinecraftEditor.Nbt
             return list;
         }
 
-        public static short ReadShort(Stream stream)
+        private static short ReadShort(Stream stream)
         {
             byte[] array = new byte[2];
             stream.Read(array, 0, 2);
@@ -115,7 +117,7 @@ namespace MinecraftEditor.Nbt
             return BitConverter.ToInt16(array, 0);
         }
 
-        public static long ReadLong(Stream stream)
+        private static long ReadLong(Stream stream)
         {
             byte[] array = new byte[8];
             stream.Read(array, 0, 8);
@@ -127,12 +129,12 @@ namespace MinecraftEditor.Nbt
             return BitConverter.ToInt64(array, 0);
         }
 
-        public static sbyte ReadByte(Stream stream)
+        private static sbyte ReadByte(Stream stream)
         {
             return (sbyte)stream.ReadByte();
         }
 
-        public static float ReadFloat(Stream stream)
+        private static float ReadFloat(Stream stream)
         {
             byte[] array = new byte[4];
             stream.Read(array, 0, 4);
@@ -144,7 +146,7 @@ namespace MinecraftEditor.Nbt
             return BitConverter.ToSingle(array, 0);
         }
 
-        public static double ReadDouble(Stream stream)
+        private static double ReadDouble(Stream stream)
         {
             byte[] array = new byte[8];
             stream.Read(array, 0, 8);
@@ -156,7 +158,7 @@ namespace MinecraftEditor.Nbt
             return BitConverter.ToDouble(array, 0);
         }
 
-        public static int ReadInt(Stream stream)
+        private static int ReadInt(Stream stream)
         {
             byte[] array = new byte[4];
             stream.Read(array, 0, 4);
@@ -168,29 +170,7 @@ namespace MinecraftEditor.Nbt
             return BitConverter.ToInt32(array, 0);
         }
 
-        public static NbtCompound ReadRoot(Stream stream)
-        {
-            //compounds are dictionaries made up of keys and values
-            Dictionary<string, object> values = new Dictionary<string, object>();
-
-            //first we have the id of the value
-            int id = stream.ReadByte();
-
-            if (id == (int)TagType.END)
-            {
-                return values;
-            }
-
-            //then the root name
-            string name = ReadString(stream);
-
-            //then the value
-            values[name] = ReadValue(id, stream);
-
-            return values;
-        }
-
-        public static NbtCompound ReadCompound(Stream stream)
+        private static NbtCompound ReadCompound(Stream stream)
         {
             //compounds are dictionaries made up of keys and values
             Dictionary<string, object> values = new Dictionary<string, object>();
@@ -213,9 +193,7 @@ namespace MinecraftEditor.Nbt
             }
         }
 
-       
-
-        public static string ReadString(Stream stream)
+        private static string ReadString(Stream stream)
         {
             short length = ReadShort(stream);
             

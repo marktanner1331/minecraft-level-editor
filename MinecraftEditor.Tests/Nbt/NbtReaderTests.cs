@@ -2,7 +2,7 @@ using MinecraftEditor.Nbt;
 
 namespace MinecraftEditor.Tests.Nbt
 {
-    public class Tests
+    public class NbtReaderTests
     {
         [SetUp]
         public void Setup()
@@ -14,7 +14,7 @@ namespace MinecraftEditor.Tests.Nbt
         {
             using (var file = File.Open("./Data/flat level - uncompressed.dat", FileMode.Open))
             {
-                NbtReader.Read(file);
+                NbtReader.ReadRoot(file);
             }
         }
     }

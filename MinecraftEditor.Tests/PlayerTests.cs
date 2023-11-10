@@ -15,7 +15,7 @@ namespace MinecraftEditor.Tests
         {
             using (var file = File.Open("./Data/flat level - uncompressed.dat", FileMode.Open))
             {
-                var root = NbtReader.Read(file);
+                var root = NbtReader.ReadRoot(file);
                 var level = Level.Load(root.Values.First() as Dictionary<string, object>);
                 var player = level.Player;
 

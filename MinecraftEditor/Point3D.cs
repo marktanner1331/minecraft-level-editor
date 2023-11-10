@@ -32,6 +32,11 @@ namespace MinecraftEditor
             Tree = tree;
         }
 
+        public override string ToString()
+        {
+            return $"x: {X}, y: {Y}, z: {Z}";
+        }
+
         public static Point3D Load(NbtList tree)
         {
             return new Point3D(tree);
